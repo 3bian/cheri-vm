@@ -1,0 +1,4 @@
+user mode makes an environment call
+the supervisor handler, scause 0000000000000008
+back in user mode
+the machine handler, mcause    0000000000000009

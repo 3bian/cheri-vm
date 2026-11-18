@@ -1,0 +1,5 @@
+czero.eqz, condition zero:    0000000000000000
+czero.eqz, condition not:     0000000000001234
+czero.nez, condition zero:    0000000000001234
+czero.nez, condition not:     0000000000000000
+a select: the first of two:   0000000000001234

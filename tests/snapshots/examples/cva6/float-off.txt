@@ -1,0 +1,7 @@
+FS, off:                     0000000000000000
+an addition with it off
+  mcause 0000000000000002
+FS, set to initial:          0000000000000001
+after fcsr is only read:     0000000000000001
+after a register is written: 0000000000000003
+the summary bit, SD:         0000000000000001

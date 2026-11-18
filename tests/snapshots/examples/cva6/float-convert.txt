@@ -1,0 +1,15 @@
+-7 as a double:                 c01c000000000000
+3.7 to a word, toward zero:     0000000000000003
+3.7 to a word, to nearest:      0000000000000004
+1e300 to a word is the highest: 000000007fffffff
+-1.0 to an unsigned word is 0:  0000000000000000
+flags: both were invalid:       0000000000000011
+not-a-number to a doubleword:   7fffffffffffffff
+3.7 narrowed to a single:       00000000406ccccd
+and widened again:              400d9999a0000000
+class of -1.0:                  0000000000000002
+class of a quiet not-a-number:  0000000000000200
+-1.0 < 3.7:                     0000000000000001
+not-a-number == itself:         0000000000000000
+3.7 with its sign flipped:      c00d99999999999a
+the lesser of 3.7 and -1.0:     bff0000000000000

@@ -1,0 +1,7 @@
+a load, with the accessed bit clear
+  mcause 000000000000000d
+the load ran again and read 0123456789abcdef
+a store, with the dirty bit clear
+  mcause 000000000000000f
+the store ran again
+the entry's low bits now 00000000000000c7

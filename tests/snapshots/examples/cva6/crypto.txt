@@ -1,0 +1,10 @@
+AES round, low half:   9a19cbe0e5816604
+AES round, high half:  4c2606287ad3f848
+the last round's form: ae52b4e0305dbfd4
+and its inverse form:  95d48b470bb4e18e
+sha256sum0:            ffffffffce20b47e
+sha256sum1:            0000000055b65510
+sha256sig0:            ffffffffba0cf582
+sha256sig1:            ffffffffcfe5da3c
+sha512sum0:            08c4db56aac80c2a
+sha512sig0:            3dbae91951caa1df

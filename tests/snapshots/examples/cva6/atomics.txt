@@ -1,0 +1,3 @@
+sc.d straight after lr.d, 0 is success: 0000000000000000
+sc.d with a trap in between:            0000000000000001
+the cell:                               0000000000000001

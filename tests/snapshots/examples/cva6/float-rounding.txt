@@ -1,0 +1,10 @@
+to nearest, ties to even: 3ff0000000000000
+toward zero:              3ff0000000000000
+down:                     3ff0000000000000
+up:                       3ff0000000000001
+to nearest, ties away:    3ff0000000000001
+flags after an inexact sum:  0000000000000001
+after 0 / 0, invalid:        0000000000000010
+after 1 / 0, divide by zero: 0000000000000008
+after an overflow:           0000000000000005
+after an underflow:          0000000000000003

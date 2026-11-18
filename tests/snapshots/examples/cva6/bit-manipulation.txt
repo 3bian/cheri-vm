@@ -1,0 +1,19 @@
+Zba sh1add, 5 * 2 + x:        00f000000000010a
+Zba sh3add, 5 * 8 + x:        00f0000000000128
+Zba add.uw, low word of 3:    0000000000000008
+Zbb clz:                      0000000000000008
+Zbb ctz:                      0000000000000008
+Zbb cpop:                     0000000000000005
+Zbb max of 5 and -3:          0000000000000005
+Zbb minu of the same:         0000000000000005
+Zbb rev8:                     000100000000f000
+Zbb orc.b:                    00ff00000000ff00
+Zbb ror by 8:                 0000f00000000001
+Zbb andn:                     ffffffff00000002
+Zbb sext.b plus zext.h:       0000000000000003
+Zbc clmul of 0x87 and 0x1b:   0000000000000dc1
+Zbc clmulh:                   0000550000000000
+Zbs bset bit 40:              0000010000000000
+Zbs bclri bit 8:              00f0000000000000
+Zbs binvi bit 0:              00f0000000000101
+Zbs bexti bit 52:             0000000000000001

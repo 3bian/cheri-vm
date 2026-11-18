@@ -1,0 +1,2 @@
+pairs that agreed: 000000000000000b
+pairs tried:       000000000000000b
