@@ -1,0 +1,16 @@
+an instruction that does not exist
+  mcause 00000002
+  mtval  ffffffff
+a load that is not aligned
+  mcause 00000004
+  mtval  800001a1
+a store that is not aligned
+  mcause 00000006
+  mtval  800001a2
+a load from an address nothing answers
+  mcause 00000005
+  mtval  40000000
+a breakpoint
+  mcause 00000003
+  mtval  00000000
+done

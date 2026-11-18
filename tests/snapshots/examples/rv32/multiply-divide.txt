@@ -1,0 +1,11 @@
+mul 7 * -3: ffffffeb
+mulh, signed, of 0x80000000 squared: 40000000
+mulhu, unsigned, of the same: 40000000
+mulhsu of -1 by unsigned 0x80000000: ffffffff
+div 7 / -3 rounds toward zero: fffffffe
+rem 7 % -3 takes the sign of 7: 00000001
+div by zero gives all ones: ffffffff
+divu by zero gives all ones: ffffffff
+rem by zero gives the dividend: 00000007
+div of the lowest number by -1 gives it back: 80000000
+rem of the same is zero: 00000000

@@ -1,0 +1,5 @@
+status:                    00000004
+status after the write:    00000005
+sector 3, word 5, read:    12345678
+sector 4, word 5, is zero: 00000000
+status, no such sector:    00000006

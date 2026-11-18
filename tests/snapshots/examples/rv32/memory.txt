@@ -1,0 +1,7 @@
+lw:  8180fffe
+lh,  sign extended: fffffffe
+lhu, zero extended: 0000fffe
+lb  of the top byte: ffffff81
+lbu of the top byte: 00000081
+after sb to byte 1: 818055fe
+after sh to byte 2: 123455fe

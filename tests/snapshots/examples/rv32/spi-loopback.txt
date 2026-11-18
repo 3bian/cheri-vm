@@ -1,0 +1,4 @@
+status after a byte:   00000001
+0x95 out, and back:    00000095
+0x3c out, and back:    0000003c
+status, nothing there: 00000003
