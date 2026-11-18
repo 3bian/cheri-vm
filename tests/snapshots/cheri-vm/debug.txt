@@ -1,0 +1,134 @@
+Usage: cheri-vm debug [OPTIONS] [FIRMWARE]
+
+Debug firmware in the emulator, through a GDB server by default.
+
+Arguments:
+  FIRMWARE
+    Firmware to run: an ELF file, or with --raw a raw image.
+
+Options:
+  --address ADDRESS
+    Load address of the raw image.
+
+  --breakpoint ADDRESS
+    Stop at an address; repeat to add more breakpoints.
+
+  --color auto|always|never
+    Color text output: auto (only on a terminal, and not when NO_COLOR is set),
+    always or never. Defaults to the color setting, else auto.
+
+  --completion disabled|elf-symbol|ADDRESS
+    How the guest reports completion.
+
+  --console-format raw|labeled|escaped
+    How guest console output is shown: raw bytes, prefixed with the UART name,
+    or with control characters escaped.
+
+  --dap
+    Serve the Debug Adapter Protocol on standard input and output, for editors
+    such as VS Code.
+
+  --ethernet interface=NAME|ws|ws://HOST:PORT/PATH[,KEY=VALUE]...
+    Bind an Ethernet device to a host TAP interface, which Linux provides, or to
+    a WebSocket: ws serves the device at /ws/NAME, and ws://HOST:PORT/PATH
+    connects to a program that is listening. Example: interface=tap0 or ws
+    Optional keys: device=NAME (profile device); with a WebSocket, timeout=MS.
+    Defaults to the CHERI_VM_ETHERNET environment variable.
+
+  --format text|json|toml
+    Form of the report. Defaults to the form the name given to --output asks
+    for, else text.
+
+  --gdb PROGRAM
+    GDB client to launch against the server.
+
+  --gdb-port PORT
+    TCP port the GDB server listens on.
+
+  --gpio path=CHIP,lines=N+N|ws|ws://HOST:PORT/PATH[,KEY=VALUE]...
+    Bind a GPIO device to host GPIO lines, through the Linux GPIO character
+    device, or to a WebSocket: ws serves the device at /ws/NAME, and
+    ws://HOST:PORT/PATH connects to a program that is listening. Example:
+    path=/dev/gpiochip0,lines=17+27 or ws,pins=5+6
+    Optional keys: device=NAME (profile device); with path,
+    active-low=true|false, bias=as-is|disabled|pull-down|pull-up,
+    drive=push-pull|open-drain|open-source; with a WebSocket, pins=N+N (the pins
+    to send; default all) and timeout=MS. Defaults to the CHERI_VM_GPIO
+    environment variable.
+
+  --host ADDRESS
+    Loopback IP address that every server of the run listens on.
+
+  --i2c path=BUS|ws|ws://HOST:PORT/PATH[,KEY=VALUE]...
+    Bind an I2C device to a host bus, through Linux i2c-dev, or to a WebSocket:
+    ws serves each address at /ws/NAME/ADDRESS, and ws://HOST:PORT/PATH connects
+    to a program that is listening. Example: path=/dev/i2c-1,addresses=0x48+0x49
+    or ws,addresses=0x48
+    Optional keys: device=NAME (profile device), addresses=A+A (with path, the
+    host addresses to allow; with a WebSocket, the addresses to send, which it
+    needs); with a WebSocket, timeout=MS. Defaults to the CHERI_VM_I2C
+    environment variable.
+
+  --memory address=ADDRESS[,length=N]
+    Dump memory when the run ends. Example: address=0x80000000,length=64
+    length is 1 to 256 bytes and defaults to 16.
+
+  -o, --output FILE
+    File to write the report to in place of standard output.
+
+  --profile NAME|FILE
+    Machine to run on: a profile built into the emulator, NAME.toml in the
+    profiles folder of your settings, or a profile file. Defaults to the
+    CHERI_VM_PROFILE environment variable.
+
+  --raw
+    Read FIRMWARE as a raw image, loaded at --address.
+
+  --registers NAME+NAME...
+    Print registers when the run ends. Example: pc+x1+x2
+    Names: x0..x31, pc, f0..f31 and fcsr with floating point, pcc with RVY, and
+    on CHERIoT c0..c15, pcc, mtcc, mtdc, mscratchc, mepcc.
+
+  --spi path=BUS|ws|ws://HOST:PORT/PATH[,KEY=VALUE]...
+    Bind an SPI device to a host bus, through Linux spidev, or to a WebSocket:
+    ws serves the chip select at /ws/NAME/SELECT, and ws://HOST:PORT/PATH
+    connects to a program that is listening. Example:
+    path=/dev/spidev0.0,speed=1000000 or ws,write-only=true
+    Optional keys: device=NAME (profile device), select=0..3,
+    write-only=true|false (send bursts and read nothing back); with path,
+    speed=HZ (default 500000); with a WebSocket, timeout=MS. Defaults to the
+    CHERI_VM_SPI environment variable.
+
+  --stats
+    Report instructions and code coverage per compartment, the hottest
+    functions, and stack high-water marks; --format and -o say how.
+
+  --steps N
+    Stop after N steps; 0 means no limit.
+
+  --trace
+    Print every executed instruction.
+
+  --trap-policy stop|vector
+    Stop on a trap, or vector to the guest handler.
+
+  --uart in=PATH|out=PATH|ws|ws://HOST:PORT/PATH[,KEY=VALUE]...
+    Bind a UART to a host file, pipe or TTY, or to a WebSocket, which carries
+    both directions: ws serves the UART at /ws/NAME, and ws://HOST:PORT/PATH
+    connects to a program that is listening. Example: out=/dev/stdout or
+    in=/dev/ttyUSB0,out=/dev/ttyUSB0,baud=115200 or ws
+    Optional keys: device=NAME (profile device); with in or out, baud=N,
+    data-bits=N, stop-bits=N, parity=none|even|odd, flow=none|rtscts|xonxoff;
+    with a WebSocket, timeout=MS. Defaults to the CHERI_VM_UART environment
+    variable.
+
+  --web-port PORT
+    TCP port of the web server, which serves the pages of --web-root and the
+    devices bound with ws under /ws/; 0 takes a free port.
+
+  --web-root DIR
+    Folder of pages to serve, subfolders included; / is its index.html. Without
+    it only /ws/ is served.
+
+  -h, --help
+    Display this help and exit.

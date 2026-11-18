@@ -1,0 +1,26 @@
+Usage: cheri-vm profile [OPTIONS] [NAME]
+
+Print a profile built into the emulator, or list them.
+
+Arguments:
+  NAME
+    Built-in profile to print, as TOML.
+
+Options:
+  --color auto|always|never
+    Color text output: auto (only on a terminal, and not when NO_COLOR is set),
+    always or never. Defaults to the color setting, else auto.
+
+  --format text|json|toml
+    Form of the report. Defaults to the form the name given to --output asks
+    for, else text.
+
+  --list
+    List the names this command takes, and do nothing else: the built-in
+    profiles, with their descriptions.
+
+  -o, --output FILE
+    File to write the report to in place of standard output.
+
+  -h, --help
+    Display this help and exit.
