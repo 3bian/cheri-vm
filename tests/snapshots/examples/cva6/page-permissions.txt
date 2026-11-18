@@ -1,0 +1,11 @@
+supervisor mode reads a user page
+  mcause 000000000000000d
+  mtval  0000000040000000
+with SUM set: 0123456789abcdef
+a read of an execute-only page
+  mcause 000000000000000d
+  mtval  0000000040001000
+with MXR set: 0123456789abcdef
+a store to a read-only page
+  mcause 000000000000000f
+  mtval  0000000040002000

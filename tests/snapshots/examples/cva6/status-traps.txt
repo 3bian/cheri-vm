@@ -1,0 +1,9 @@
+wfi with TW set
+  mcause 0000000000000002
+  mtval  0000000010500073
+sret with TSR set
+  mcause 0000000000000002
+  mtval  0000000010200073
+a write to satp with TVM set
+  mcause 0000000000000002
+  mtval  0000000018001073

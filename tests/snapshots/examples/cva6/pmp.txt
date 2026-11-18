@@ -1,0 +1,9 @@
+machine mode reads the locked region: 0123456789abcdef
+machine mode writes to it
+  mcause 0000000000000007
+  mtval, bytes from the locked region 0000000000000000
+supervisor mode reads the region kept from it
+  mcause 0000000000000005
+  mtval, bytes from the locked region 0000000000001000
+supervisor mode reads elsewhere
+and gets 1122334455667788
