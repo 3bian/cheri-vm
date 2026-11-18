@@ -1,0 +1,41 @@
+{
+  "name": "cheri-vm-debug",
+  "displayName": "cheri-vm Debug",
+  "description": "Debug firmware in the cheri-vm emulator",
+  "version": "0.1.0",
+  "publisher": "cheri-vm",
+  "license": "MIT",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Debuggers"],
+  "main": "./extension.js",
+  "activationEvents": ["onDebugResolve:cheri-vm"],
+  "contributes": {
+    "breakpoints": [{ "language": "c" }, { "language": "cpp" }, { "language": "riscv" }],
+    "debuggers": [
+      {
+        "type": "cheri-vm",
+        "label": "cheri-vm emulator",
+        "languages": ["c", "cpp"],
+        "configurationAttributes": {
+          "launch": {
+            "required": ["program", "profile"],
+            "properties": {
+              "program": { "type": "string", "description": "Firmware ELF file." },
+              "profile": { "type": "string", "description": "Profile: the name of a built-in machine such as cheriot, a name in the profiles folder of your settings, or a file." },
+              "cheriVm": { "type": "string", "description": "Path to the cheri-vm executable.", "default": "cheri-vm" }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "type": "cheri-vm",
+            "request": "launch",
+            "name": "Debug firmware in cheri-vm",
+            "program": "${workspaceFolder}/firmware.elf",
+            "profile": "cheriot"
+          }
+        ]
+      }
+    ]
+  }
+}
