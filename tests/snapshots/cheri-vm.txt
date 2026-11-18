@@ -1,0 +1,25 @@
+Usage: cheri-vm [OPTIONS] [COMMAND]
+
+Run and debug firmware in the emulator: CHERIoT, RV32, RV64, CVA6 and RVY
+machines. It takes a firmware file and a profile, and builds nothing.
+
+Commands:
+  debug
+    Debug firmware in the emulator, through a GDB server by default.
+
+  profile
+    Print a profile built into the emulator, or list them.
+
+  run
+    Run firmware in the emulator.
+
+Options:
+  --color auto|always|never
+    Color text output: auto (only on a terminal, and not when NO_COLOR is set),
+    always or never. Defaults to the color setting, else auto.
+
+  -V, --version
+    Display the version, and exit.
+
+  -h, --help
+    Display this help and exit.
