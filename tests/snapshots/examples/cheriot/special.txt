@@ -1,0 +1,8 @@
+mtcc, bytes from the start:        00000224
+mtdc, permissions:                 0000007f
+mscratchc, permissions:            00000e01
+cspecialrw returns what was there: 00000e01
+and put the new value in:          80002000
+the same read from code without the permission
+  mcause 0000001c
+  mtval  000007b8

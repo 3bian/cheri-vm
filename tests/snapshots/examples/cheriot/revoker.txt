@@ -1,0 +1,6 @@
+the epoch before:                   00000000
+the epoch after one sweep:          00000002
+the mark is gone, yet the tag is:   00000000
+a second sweep, with its interrupt asked for
+the handler claimed source:         00000007
+the epoch now:                      00000004

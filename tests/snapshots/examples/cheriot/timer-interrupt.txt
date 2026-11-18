@@ -1,0 +1,4 @@
+waiting, with interrupts on
+now through a sentry that turns them off
+the handler had run when the sentry's code ended: 00000000
+and has run now that it has returned:             00000001

@@ -1,0 +1,5 @@
+the mark, set to the top of the stack: 80005000
+after a store 16 bytes down:           80004ff0
+after one 256 bytes down:              80004f00
+a store above the mark leaves it:      80004f00
+the base it stops at:                  80004000

@@ -1,0 +1,12 @@
+pcc       base:        00000000
+pcc       top:         ffffffff
+pcc       permissions: 000001eb
+pcc       tag:         00000001
+mtdc      base:        00000000
+mtdc      top:         ffffffff
+mtdc      permissions: 0000007f
+mtdc      tag:         00000001
+mscratchc base:        00000000
+mscratchc top:         ffffffff
+mscratchc permissions: 00000e01
+mscratchc tag:         00000001

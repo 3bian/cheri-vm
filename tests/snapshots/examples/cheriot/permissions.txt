@@ -1,0 +1,13 @@
+permissions to begin with:  0000007f
+without store:              0000006b
+a store through it
+  mcause 0000001c
+  mtval  00000193
+without load:               00000045
+a load through it
+  mcause 0000001c
+  mtval  000001b2
+a permission cannot be put back: 00000000
+a jump through a capability that cannot execute
+  mcause 0000001c
+  mtval  00000111

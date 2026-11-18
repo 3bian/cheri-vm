@@ -1,0 +1,4 @@
+loaded before the mark, tag:      00000001
+loaded after it, tag:             00000000
+the copy already in a register:   00000001
+loaded once the mark is cleared:  00000001

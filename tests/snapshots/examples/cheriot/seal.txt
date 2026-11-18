@@ -1,0 +1,12 @@
+sealed with type 9, its type:  00000009
+its tag:                       00000001
+a load through it while sealed
+  mcause 0000001c
+  mtval  00000183
+moved while sealed, tag:       00000000
+unsealed with type 9, tag:     00000001
+its type:                      00000000
+a key at 10, 9 in its bounds:  00000001
+a key bounded to 10 alone:     00000000
+with a key that has no tag:    00000000
+with a key that cannot unseal: 00000000

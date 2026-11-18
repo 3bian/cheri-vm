@@ -1,0 +1,6 @@
+a capability's tag:                 00000001
+after ccleartag:                    00000000
+after csethigh, even to the same:   00000000
+stored and loaded again:            00000001
+after an integer is stored over it: 00000000
+the address is still there:         80002000

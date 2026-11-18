@@ -1,0 +1,8 @@
+interrupts enabled, to begin with:       00000000
+a sentry sealed with type 3:             00000003
+inside it, interrupts enabled:           00000001
+the type of the link it was given:       00000004
+after the return:                        00000000
+through type 2, with them on: inside:    00000000
+the type of the link:                    00000005
+after the return:                        00000001

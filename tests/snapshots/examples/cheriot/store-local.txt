@@ -1,0 +1,5 @@
+a local capability, permissions:        0000007e
+stored with store-local, tag:           00000001
+an authority without it, permissions:   0000006f
+the local one stored through it, tag:   00000000
+a global one stored through it, tag:    00000001

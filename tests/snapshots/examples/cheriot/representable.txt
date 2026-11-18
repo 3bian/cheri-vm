@@ -1,0 +1,5 @@
+crrl of 0x1234567: 02000000
+cram of 0x1234567: ff000000
+crrl of 0x100:     00000100
+cram of 0x100:     ffffffff
+exact bounds after aligning by the mask, tag: 00000001
