@@ -1,0 +1,21 @@
+<!-- Copyright 3bian Limited and Contributors -->
+<!-- SPDX-License-Identifier: MIT -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>cheri-vm devices</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="css/room.css" />
+  </head>
+  <body>
+    <h1>Devices for cheri-vm</h1>
+    <ul>
+      <li><a href="terminal.html">UART terminal</a>, at <code>/ws/uart</code></li>
+      <li><a href="sensor.html">I2C temperature sensor</a>, at <code>/ws/i2c/0x48</code></li>
+      <li><a href="display.html">ST7735 display</a>, at <code>/ws/spi/0</code> and <code>/ws/gpio</code></li>
+    </ul>
+    <p>Each page plays one device of the machine that cheri-vm is running, and waits for the next run when one ends.</p>
+  </body>
+</html>

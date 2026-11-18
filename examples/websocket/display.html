@@ -1,0 +1,136 @@
+<!-- Copyright 3bian Limited and Contributors -->
+<!-- SPDX-License-Identifier: MIT -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ST7735 display</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="css/room.css" />
+  </head>
+  <body>
+    <div id="status">Connecting</div>
+    <canvas id="panel"></canvas>
+    <div id="pins"></div>
+    <script src="js/room.js"></script>
+    <script>
+      "use strict";
+
+      const spi = parameter("spi", "spi/0");
+      const gpio = parameter("gpio", "gpio");
+      const dataPin = Number(parameter("dc", "0"));
+      const resetPin = Number(parameter("reset", "1"));
+      const panel = document.getElementById("panel");
+      panel.width = Number(parameter("width", "160"));
+      panel.height = Number(parameter("height", "128"));
+      const context = panel.getContext("2d");
+      const image = context.createImageData(panel.width, panel.height);
+      const controller = {};
+
+      function reset() {
+        Object.assign(controller, {
+          command: 0,
+          parameters: [],
+          left: 0,
+          right: panel.width - 1,
+          top: 0,
+          bottom: panel.height - 1,
+          x: 0,
+          y: 0,
+          high: null,
+          swapped: false,
+        });
+        image.data.fill(0);
+        for (let index = 3; index < image.data.length; index += 4) {
+          image.data[index] = 255;
+        }
+      }
+
+      function pixel(color) {
+        if (controller.x < panel.width && controller.y < panel.height) {
+          const red = (color >> 11) & 31;
+          const green = (color >> 5) & 63;
+          const blue = color & 31;
+          const index = (controller.y * panel.width + controller.x) * 4;
+          image.data[index] = ((controller.swapped ? blue : red) * 255) / 31;
+          image.data[index + 1] = (green * 255) / 63;
+          image.data[index + 2] = ((controller.swapped ? red : blue) * 255) / 31;
+        }
+        controller.x += 1;
+        if (controller.x > controller.right) {
+          controller.x = controller.left;
+          controller.y = controller.y >= controller.bottom ? controller.top : controller.y + 1;
+        }
+      }
+
+      function command(byte) {
+        controller.command = byte;
+        controller.parameters = [];
+        controller.high = null;
+        if (byte === 0x01) {
+          reset();
+        } else if (byte === 0x2c) {
+          controller.x = controller.left;
+          controller.y = controller.top;
+        }
+      }
+
+      function data(byte) {
+        if (controller.command === 0x2c) {
+          if (controller.high === null) {
+            controller.high = byte;
+          } else {
+            pixel((controller.high << 8) | byte);
+            controller.high = null;
+          }
+          return;
+        }
+        controller.parameters.push(byte);
+        const [first, second, third, fourth] = controller.parameters;
+        if (controller.command === 0x36) {
+          controller.swapped = (first & 0x08) !== 0;
+        } else if (controller.parameters.length === 4 && controller.command === 0x2a) {
+          controller.left = (first << 8) | second;
+          controller.right = (third << 8) | fourth;
+        } else if (controller.parameters.length === 4 && controller.command === 0x2b) {
+          controller.top = (first << 8) | second;
+          controller.bottom = (third << 8) | fourth;
+        }
+      }
+
+      let dataLevel = false;
+      let held = false;
+      device(gpio, (message) => {
+        if (message.type === "gpio") {
+          const level = (pin) => ((message.levels >>> pin) & 1) === 1;
+          const driven = ((message.direction >>> resetPin) & 1) === 1;
+          dataLevel = level(dataPin);
+          held = driven && !level(resetPin);
+          if (held) {
+            reset();
+          }
+          document.getElementById("pins").textContent =
+            `data/command ${dataLevel ? "high" : "low"}, reset ${held ? "held" : "released"}`;
+          context.putImageData(image, 0, 0);
+        }
+      });
+      const send = device(spi, (message) => {
+        if (message.type === "hello") {
+          reset();
+        } else if (message.type === "spi" && message.data !== undefined) {
+          const bytes = decode(message.data);
+          if (!held) {
+            bytes.forEach(dataLevel ? data : command);
+          }
+          if (message.id !== undefined) {
+            send({ type: "reply", id: message.id, data: encode(bytes.map(() => 0xff)) });
+          }
+        }
+        context.putImageData(image, 0, 0);
+      });
+      reset();
+      context.putImageData(image, 0, 0);
+    </script>
+  </body>
+</html>

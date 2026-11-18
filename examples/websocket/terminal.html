@@ -1,0 +1,45 @@
+<!-- Copyright 3bian Limited and Contributors -->
+<!-- SPDX-License-Identifier: MIT -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UART terminal</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="css/room.css" />
+  </head>
+  <body>
+    <div id="status">Connecting</div>
+    <pre id="screen" tabindex="0"></pre>
+    <div>Click the terminal, then type; each key goes to the UART</div>
+    <script src="js/room.js"></script>
+    <script>
+      "use strict";
+
+      const name = parameter("device", "uart");
+      const screen = document.getElementById("screen");
+      const text = new TextDecoder();
+      const send = device(name, (message) => {
+        if (message.type === "hello") {
+          screen.textContent = "";
+        } else if (message.type === "uart") {
+          screen.textContent += text.decode(decode(message.data), { stream: true });
+          screen.scrollTop = screen.scrollHeight;
+        }
+      });
+      screen.addEventListener("keydown", (event) => {
+        if (event.ctrlKey || event.metaKey || event.altKey) {
+          return;
+        }
+        const keys = { Enter: "\n", Tab: "\t", Backspace: "\b", Escape: "\u001b" };
+        const typed = event.key.length === 1 ? event.key : keys[event.key];
+        if (typed !== undefined) {
+          event.preventDefault();
+          send({ type: "uart", data: encode(new TextEncoder().encode(typed)) });
+        }
+      });
+      screen.focus();
+    </script>
+  </body>
+</html>
