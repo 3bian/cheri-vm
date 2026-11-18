@@ -1,0 +1,7 @@
+the narrower is a subset of the wider:    00000001
+the wider is a subset of the narrower:    00000000
+fewer permissions is a subset:            00000001
+one without a tag is not:                 00000000
+a copy is exactly equal:                  00000001
+the same bits without the tag are not:    00000000
+nor is one with another address:          00000000

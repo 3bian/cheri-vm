@@ -1,0 +1,9 @@
+bytes: the stack pointer moved:         00000002
+bytes: a store through it:              00000002
+bytes: a load through it:               00000002
+bytes: an address made from it:         00000002
+bytes: a store through another:         00000002
+bytes: a load through another:          00000002
+the capability loaded through it, tag:  00000001
+and through the other, tag:             00000001
+the address made, bytes above the base: 00000030

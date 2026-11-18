@@ -1,0 +1,8 @@
+address:     80001010
+base:        80001000
+top:         80001200
+length:      00000200
+permissions: 0000007f
+type:        00000000
+tag:         00000001
+high word:   7e060000

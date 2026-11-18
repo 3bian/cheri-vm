@@ -1,0 +1,6 @@
+asked for 0x1234567; csetbounds gave:    02000000
+tag:                                     00000001
+csetboundsexact, tag:                    00000000
+csetboundsrounddown gave:                003fe000
+tag:                                     00000001
+csetboundsexact of 0x100, tag:           00000001

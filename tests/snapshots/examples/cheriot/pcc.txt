@@ -1,0 +1,6 @@
+auipcc gives the address it is at, bytes in: 0000001c
+with the program counter's permissions:      000001eb
+auicgp with 1, from a cgp of 0x80002000:     80002800
+a jump to four bytes of code, and a fetch past them
+  mcause 0000001c
+  mtval  00000401

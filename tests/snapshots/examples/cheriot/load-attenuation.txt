@@ -1,0 +1,4 @@
+loaded through the full authority: 0000007f
+through one without load-global:   0000007c
+through one without load-mutable:  00000063
+the tag is kept:                   00000001

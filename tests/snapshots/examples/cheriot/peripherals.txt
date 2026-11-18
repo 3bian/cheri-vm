@@ -1,0 +1,5 @@
+GPIO, the pins driven:           00000005
+SPI, 0x95 out and back:          00000095
+I2C, the byte the EEPROM kept:   000000ab
+storage, the word read back:     12345678
+Ethernet, status after a send:   00000001

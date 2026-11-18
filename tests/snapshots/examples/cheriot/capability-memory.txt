@@ -1,0 +1,10 @@
+stored and loaded, tag:      00000001
+its length came with it:     00000040
+the same memory as a word:   80002000
+and the word above it:       7e008000
+a store to an address that is not a multiple of eight
+  mcause 00000006
+  mtval  80002004
+a load from one
+  mcause 00000004
+  mtval  80002004

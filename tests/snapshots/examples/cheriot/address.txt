@@ -1,0 +1,7 @@
+csetaddr:                    80001000
+cincoffset by a register:    80001020
+cincoffset by an immediate:  80001018
+the copy minus the first:    00000018
+the copy's tag:              00000001
+moved a megabyte away:       80101000
+its tag:                     00000000
