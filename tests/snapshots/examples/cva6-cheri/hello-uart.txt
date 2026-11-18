@@ -1,0 +1,6 @@
+Hello from a machine where every pointer is a capability
+the UART capability, its tag: 0000000000000001
+its base:                     0000000010000000
+its length:                   0000000000000020
+its permissions:              0000000000ffffff
+the same address as a number: 0000000000000000

@@ -1,0 +1,7 @@
+a global capability:                   0000000000ffffff
+a local one, the global bit gone:      0000000000ffffef
+local, stored with store-local, tag:   0000000000000001
+local, stored without it, tag:         0000000000000000
+global, stored without it, tag:        0000000000000001
+that one, loaded without load-global:  0000000000000001
+and its permissions, now a local's:    0000000000ffffeb

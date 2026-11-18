@@ -1,0 +1,10 @@
+mtvec at reset, its tag:              0000000000000001
+and its length:                       ffffffffffffffff
+in the handler, mcause was:           000000000000000b
+mepc had its tag:                     0000000000000001
+and the length of what was running:   ffffffffffffffff
+the handler's own length, in bytes:   0000000000000024
+mscratch, written with a capability:  0000000000000001
+after csrs moves its address on by 8: 0000000000000001
+the address:                          00000000800003e8
+written with the address as a number: 0000000000000000

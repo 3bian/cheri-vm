@@ -1,0 +1,13 @@
+all of them:                   0000000000ffffff
+without write:                 0000000000fffff6
+a load through it:             0123456789abcdef
+a store through it
+  mcause 0000000000000022
+  mtval  0000000080000370
+without read:                  0000000000fbfff9
+a load through that
+  mcause 0000000000000021
+  mtval  0000000080000370
+the lesser is within the full: 0000000000000001
+the full within the lesser:    0000000000000000
+the root without execute:      0000000000fcffff

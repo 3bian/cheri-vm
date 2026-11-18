@@ -1,0 +1,15 @@
+base:                               0000000080000460
+top:                                0000000080000470
+length:                             0000000000000010
+the last eight bytes inside:        2222222222222222
+moved to the top, it keeps its tag: 0000000000000001
+a load from there
+  mcause 0000000000000021
+  mtval  0000000080000470
+a store one byte past the end
+  mcause 0000000000000022
+  mtval  0000000080000470
+0x100001 bytes, asked for exactly:  0000000000000000
+the same, rounded outward, tag:     0000000000000001
+and the length it was given:        0000000000100800
+the mask that aligns a base for it: fffffffffffff800
