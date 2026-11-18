@@ -1,0 +1,9 @@
+mul  0x100000003 * 7:               0000000700000015
+mulw sees only the low words:       0000000000000015
+mulh of the lowest number squared:  4000000000000000
+mulhu of the same:                  4000000000000000
+div of the lowest number by -1:     8000000000000000
+divw of the lowest word by -1:      ffffffff80000000
+divuw 0xffffffff / 7:               0000000024924924
+remw 3 % 7:                         0000000000000003
+divw by zero:                       ffffffffffffffff

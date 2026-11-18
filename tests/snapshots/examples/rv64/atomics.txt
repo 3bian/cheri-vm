@@ -1,0 +1,9 @@
+sc.d after lr.d, 0 is success: 0000000000000000
+sc.d with no reservation:      0000000000000001
+sc.w to another address:       0000000000000001
+the cell now:                  000000000000000b
+amoswap.d gave the old value:  000000000000000b
+after amoadd.d 5:              0000000000000069
+after and 0x0f, or 0x30, xor:  00000000000000c6
+after max -5 and minu -5:      00000000000000c6
+after amomin.d -9:             fffffffffffffff7

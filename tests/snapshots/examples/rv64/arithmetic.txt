@@ -1,0 +1,10 @@
+add  0x7fffffff + 1:            0000000080000000
+addw of the same, sign extended:ffffffff80000000
+sub  0x100000000 - 1:           00000000ffffffff
+subw sees only the low word:    ffffffffffffffff
+slli by 40:                     0000010000000000
+slliw by 31, sign extended:     ffffffff80000000
+srli -16 by 60:                 000000000000000f
+srai -16 by 60:                 ffffffffffffffff
+srliw -16 by 28:                000000000000000f
+addiw 0xffffffff, 0 (sext.w):   ffffffffffffffff

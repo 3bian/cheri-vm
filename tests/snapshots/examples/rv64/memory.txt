@@ -1,0 +1,5 @@
+ld:                8877665580332211
+lw, sign extended: ffffffff80332211
+lwu, zero extended:0000000080332211
+lw of the top half:ffffffff88776655
+after sw to it:    ffffffff80332211
