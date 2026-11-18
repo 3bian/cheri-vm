@@ -1,0 +1,8 @@
+beq on equal values, taken: 00000001
+bne on different values, taken: 00000001
+blt -1 < 1, signed, taken: 00000001
+bltu 0xffffffff < 1, unsigned, taken: 00000000
+bge 1 >= -1, signed, taken: 00000001
+bgeu 0xffffffff >= 1, unsigned, taken: 00000001
+jal links to the instruction after it, bytes on: 00000004
+jalr links to the instruction after it, bytes on: 00000004

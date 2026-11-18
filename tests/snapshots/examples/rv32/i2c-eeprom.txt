@@ -1,0 +1,4 @@
+status after the write:  00000005
+the first byte read:     000000ab
+the second:              000000cd
+status, nothing at 0x51: 0000000e

@@ -1,0 +1,3 @@
+direction, pins 0 to 3 as outputs: 0000000f
+the output register:               00000035
+the pins: only outputs are driven: 00000005

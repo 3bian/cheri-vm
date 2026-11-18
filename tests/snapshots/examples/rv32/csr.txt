@@ -1,0 +1,10 @@
+csrrw wrote:                 12345678
+csrrs set 0x0000ff00:        1234ff78
+csrrc returned the old value:1234ff78
+and cleared 0x0000ff00:      12340078
+csrrwi wrote 21:             00000015
+csrrsi set 10:               0000001f
+csrrci cleared 1:            0000001e
+minstret between two reads:  00000001
+the same with it inhibited:  00000000
+mcycle, inhibited too:       00000000

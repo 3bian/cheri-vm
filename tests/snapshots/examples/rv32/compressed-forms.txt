@@ -1,0 +1,2 @@
+pairs that agreed: 0000000f
+pairs tried:       0000000f
