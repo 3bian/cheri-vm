@@ -1,0 +1,14 @@
+# Copyright 3bian Limited and Contributors
+# SPDX-License-Identifier: MIT
+
+name = "two-uarts"
+description = "rv32imc without Ethernet, with a second UART and a ROM"
+extends = "rv32imc"
+remove = ["device/ethernet"]
+
+[device]
+uart1 = { start = 0x1000_4000, model = "uart", interrupt_source = 7 }
+
+[emulator]
+completion = { address = 0x8010_0000 }
+memory = { rom0 = { start = 0x2000_0000, length = 0x1000, type = "rom" } }
