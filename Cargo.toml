@@ -1,41 +1,69 @@
-# Copyright 3bian Limited and Contributors
-# SPDX-License-Identifier: MIT
-
 [package]
-name = "cheriot-vm"
+name = "cheri-vm"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 license = "MIT"
-description = "A modular RISC-V and CHERIoT emulator written in Rust"
-readme = "README.md"
-
-[features]
-default = []
-gdb = ["dep:gdbstub"]
-verification = []
+description = "The CHERI and RISC-V emulator: CHERIoT, RV32, RV64, CVA6 and RVY"
 
 [dependencies]
-elf = { version = "0.8", default-features = false }
-gdbstub = { version = "0.7.10", optional = true, default-features = false, features = ["paranoid_unsafe", "std"] }
+gdbstub = { version = "0.7.10", default-features = false, optional = true, features = [
+    "paranoid_unsafe",
+    "std",
+] }
+gimli = { version = "0.31", default-features = false, features = [
+    "read",
+    "std",
+] }
 serde = { version = "1.0.229", features = ["derive"] }
-toml = { version = "0.8", default-features = false, features = ["parse"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+toml = { version = "0.9", features = ["preserve_order"] }
+
+[target.'cfg(unix)'.dependencies]
+nix = { version = "0.31", default-features = false, features = [
+    "fs",
+    "net",
+    "poll",
+    "signal",
+    "term",
+] }
 
 [target.'cfg(target_os = "linux")'.dependencies]
 gpiocdev = { version = "0.8", default-features = false, features = ["uapi_v2"] }
 i2cdev = "0.6.2"
-nix = { version = "0.31", default-features = false, features = ["fs", "net", "poll", "term"] }
 spidev = "0.7.1"
 tun = { version = "0.8.14", default-features = false }
 
+[dev-dependencies]
+serde_json = { version = "1", features = ["preserve_order"] }
+toml = { version = "0.9", features = ["preserve_order"] }
+tungstenite = { version = "0.30", default-features = false, features = [
+    "handshake",
+] }
+
+[features]
+default = ["gdb"]
+gdb = ["dep:gdbstub"]
+verification = []
+
+[lints.rust]
+unreachable_pub = "deny"
+unsafe_code = "forbid"
+
+[lints.clippy]
+dbg_macro = "deny"
+expect_used = "deny"
+match_same_arms = "deny"
+mod_module_files = "deny"
+needless_pass_by_value = "deny"
+print_stderr = "deny"
+print_stdout = "deny"
+redundant_clone = "deny"
+struct_excessive_bools = "deny"
+todo = "deny"
+too_many_lines = "deny"
+unimplemented = "deny"
+
 [profile.release]
-codegen-units = 1
-lto = "thin"
 overflow-checks = true
-
-[[test]]
-name = "cheriot1"
-path = "tests/cheriot.rs"
-
-[[test]]
-name = "cheriot_spec_contract"
-path = "tests/cheriot/spec_contract.rs"
+lto = "thin"
+strip = true
