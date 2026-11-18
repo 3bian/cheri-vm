@@ -1,59 +1,93 @@
 # Copyright 3bian Limited and Contributors
 # SPDX-License-Identifier: MIT
 
-[machine]
 name = "cheriot"
-timing = "per-step"
-steps_per_tick = 100
+description = "The cheri-vm emulator"
+cpu = "cheriot"
+simulation = true
 timer_hz = 2000
+tickrate_hz = 10
+instruction_memory = { start = 0x8000_0000, end = 0x8004_0000 }
+heap               = { end = 0x8004_0000 }
+revoker = "software"
+defines = ["RISCV_HTIF"]
+driver_includes = [
+    "${sdk}/include/platform/cheri-vm",
+    "${sdk}/include/platform/generic-riscv",
+]
 
-[processor]
-type = "cheriot"
+[device.clint]
+start = 0x0200_0000
+length = 0xC_0000
+model = "timer64"
 
-[[cheriot-memory]]
-name = "ram0"
-type = "ram"
-base = 0x80000000
-size = 0x04000000
+[device.clint_time]
+start = 0x0200_BFF8
+length = 8
 
-[[timer64]]
-name = "timer0"
-base = 0x02000000
+[device.plic]
+start = 0x0C00_0000
+length = 16
+model = "interrupt-controller"
 
-[[interrupt-controller]]
-name = "interrupts"
-base = 0x0c000000
+[device.uart]
+start = 0x1000_0000
+length = 256
+model = "16550"
 
-[[uart]]
-layout = "16550"
-name = "uart0"
-base = 0x10000000
-
-[[gpio]]
-name = "gpio0"
-base = 0x10003000
-interrupt_source = 2
-
-[[spi]]
-name = "spi0"
-base = 0x10001000
+[device.spi]
+start = 0x1000_1000
+length = 24
+model = "spi"
+interrupt = "spi"
 attached_device = "loopback"
-interrupt_source = 3
 
-[[i2c]]
-name = "i2c0"
-base = 0x10002000
+[device.i2c]
+start = 0x1000_2000
+length = 24
+model = "i2c"
+interrupt = "i2c"
 attached_device = "eeprom"
-interrupt_source = 4
 
-[[ethernet]]
-name = "ethernet0"
-base = 0x20000000
-interrupt_source = 5
+[device.gpio]
+start = 0x1000_3000
+length = 20
+model = "gpio"
+interrupt = "gpio"
 
-[[storage]]
-name = "storage0"
-base = 0x30000000
+[device.revoker]
+start = 0x1000_4000
+length = 24
+model = "revoker"
+interrupt_source = 7
+
+[device.ethernet]
+start = 0x2000_0000
+length = 36
+model = "ethernet"
+interrupt = "ethernet"
+
+[device.storage]
+start = 0x3000_0000
+length = 24
+model = "storage"
+interrupt = "storage"
 sectors = 32
 read_only = false
-interrupt_source = 6
+
+[device.shadow]
+start = 0x8300_0000
+length = 0x1000
+
+[interrupt]
+gpio     = { number = 2, priority = 2 }
+spi      = { number = 3, priority = 2 }
+i2c      = { number = 4, priority = 2 }
+ethernet = { number = 5, priority = 2 }
+storage  = { number = 6, priority = 2 }
+
+[emulator]
+processor = "cheriot"
+timing = "per-step"
+steps_per_tick = 100
+memory = { ram0 = { start = 0x8000_0000, length = 0x0400_0000 } }

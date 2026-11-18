@@ -1,0 +1,77 @@
+/dts-v1/;
+
+/ {
+    #address-cells = <2>;
+    #size-cells = <2>;
+    compatible = "cheri-vm,cva6";
+    model = "cheri-vm,cva6";
+
+    chosen {
+        stdout-path = "/soc/uart@10000000:115200";
+    };
+
+    cpus {
+        #address-cells = <1>;
+        #size-cells = <0>;
+        timebase-frequency = <10000000>;
+
+        cpu0: cpu@0 {
+            device_type = "cpu";
+            reg = <0>;
+            status = "okay";
+            compatible = "riscv";
+            riscv,isa = "rv64imafdc_zicond_zicsr_zifencei_zba_zbb_zbc_zbs_zcb_zbkb_zbkc_zbkx_zknd_zkne_zknh";
+            riscv,isa-base = "rv64i";
+            riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicond", "zicsr",
+                "zifencei", "zihpm", "zba", "zbb", "zbc", "zbs", "zcb", "zbkb", "zbkc", "zbkx",
+                "zknd", "zkne", "zknh";
+            mmu-type = "riscv,sv39";
+
+            cpu0_intc: interrupt-controller {
+                #interrupt-cells = <1>;
+                interrupt-controller;
+                compatible = "riscv,cpu-intc";
+            };
+        };
+    };
+
+    memory@80000000 {
+        device_type = "memory";
+        reg = <0x0 0x80000000 0x0 0x40000000>;
+    };
+
+    soc {
+        #address-cells = <2>;
+        #size-cells = <2>;
+        compatible = "simple-bus";
+        ranges;
+
+        clint@2000000 {
+            compatible = "riscv,clint0";
+            interrupts-extended = <&cpu0_intc 3 &cpu0_intc 7>;
+            reg = <0x0 0x2000000 0x0 0xc0000>;
+        };
+
+        plic0: interrupt-controller@c000000 {
+            #address-cells = <0>;
+            #interrupt-cells = <1>;
+            compatible = "riscv,plic0";
+            interrupt-controller;
+            interrupts-extended = <&cpu0_intc 11 &cpu0_intc 9>;
+            reg = <0x0 0xc000000 0x0 0x4000000>;
+            riscv,max-priority = <7>;
+            riscv,ndev = <30>;
+        };
+
+        uart@10000000 {
+            compatible = "ns16550a";
+            reg = <0x0 0x10000000 0x0 0x1000>;
+            clock-frequency = <50000000>;
+            current-speed = <115200>;
+            interrupt-parent = <&plic0>;
+            interrupts = <1>;
+            reg-shift = <2>;
+            reg-io-width = <4>;
+        };
+    };
+};

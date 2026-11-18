@@ -1,0 +1,55 @@
+# Copyright 3bian Limited and Contributors
+# SPDX-License-Identifier: MIT
+
+name = "rv64imac"
+description = """\
+    A bare RV64IMAC machine for the emulator; it has no firmware keys"""
+
+[device.clint]
+start = 0x0200_0000
+model = "timer64"
+
+[device.plic]
+start = 0x0C00_0000
+model = "interrupt-controller"
+
+[device.uart]
+start = 0x1000_0000
+model = "uart"
+interrupt_source = 1
+
+[device.spi]
+start = 0x1000_1000
+model = "spi"
+interrupt_source = 3
+attached_device = "loopback"
+
+[device.i2c]
+start = 0x1000_2000
+model = "i2c"
+interrupt_source = 4
+attached_device = "eeprom"
+
+[device.gpio]
+start = 0x1000_3000
+model = "gpio"
+interrupt_source = 2
+
+[device.ethernet]
+start = 0x2000_0000
+model = "ethernet"
+interrupt_source = 5
+
+[device.storage]
+start = 0x3000_0000
+model = "storage"
+interrupt_source = 6
+sectors = 32
+read_only = false
+
+[emulator]
+processor = "rv64"
+extensions = ["i", "m", "a", "c", "zicsr", "zifencei"]
+timing = "elapsed"
+timer_hz = 2000
+memory = { ram0 = { start = 0x8000_0000, length = 0x0400_0000 } }

@@ -1,0 +1,40 @@
+# Copyright 3bian Limited and Contributors
+# SPDX-License-Identifier: MIT
+
+name = "cva6-cheri"
+description = """\
+    The cva6 machine with RVY capabilities, at draft v0.9.10.1 in the \
+    RV64LYA format; it has no firmware keys"""
+
+[device]
+clint = { start = 0x0200_0000, model = "timer64" }
+plic  = { start = 0x0C00_0000, model = "plic" }
+uart  = { start = 0x1000_0000, model = "16550", interrupt_source = 1 }
+
+[emulator]
+processor = "rv64"
+extensions = [
+    "y",
+    "zylg",
+    "i",
+    "m",
+    "a",
+    "f",
+    "d",
+    "c",
+    "zicsr",
+    "zifencei",
+    "zicond",
+    "zba",
+    "zbb",
+    "zbc",
+    "zbs",
+    "zcb",
+    "zkn",
+    "s",
+    "u",
+    "svyrg",
+]
+timing = "elapsed"
+timer_hz = 10000000
+memory = { ram0 = { start = 0x8000_0000, length = 0x4000_0000 } }

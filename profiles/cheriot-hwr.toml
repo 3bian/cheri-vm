@@ -1,0 +1,19 @@
+# Copyright 3bian Limited and Contributors
+# SPDX-License-Identifier: MIT
+
+name = "cheriot-hwr"
+description = "The cheri-vm emulator with its hardware revoker in use"
+extends = "cheriot"
+remove = ["device/revoker/interrupt_source"]
+revoker = "hardware"
+driver_includes = [
+    "${sdk}/include/platform/cheri-vm",
+    "${sdk}/include/platform/generic-riscv",
+    "${sdk}/include/platform/ibex",
+]
+
+[device]
+revoker = { interrupt = "revoker" }
+
+[interrupt]
+revoker = { number = 7, priority = 2, edge_triggered = true }
