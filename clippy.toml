@@ -1,0 +1,5 @@
+# Copyright 3bian Limited and Contributors
+# SPDX-License-Identifier: MIT
+
+allow-print-in-tests = true
+too-many-lines-threshold = 150

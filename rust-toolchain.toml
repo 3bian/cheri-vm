@@ -1,7 +1,4 @@
-# Copyright 3bian Limited and Contributors
-# SPDX-License-Identifier: MIT
-
 [toolchain]
-channel = "1.99.1"
+channel = "1.97.0"
 profile = "minimal"
 components = ["rustfmt", "clippy"]
